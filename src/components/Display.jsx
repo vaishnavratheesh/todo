@@ -12,7 +12,7 @@ const Display = () => {
 
     const fetchTodos = async () => {
         try {
-            const response = await axios.get("http://localhost:3000/api/items");
+            const response = await axios.get("https://todobackend-xguo.onrender.com/api/items");
             console.log("Fetched todos:", response.data);
             setTodos(response.data);
             setError('');
