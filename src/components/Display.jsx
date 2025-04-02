@@ -4,24 +4,30 @@ import '../assets/Display.css';
 
 const Display = () => {
     const [todos, setTodos] = useState([]);
+    const [error, setError] = useState('');
 
     useEffect(() => {
         fetchTodos();
-    }, []); // Add empty dependency array to prevent infinite loop
+    }, []);
 
     const fetchTodos = async () => {
         try {
-            const response = await axios.get("http://localhost:3000/items");
+            const response = await axios.get("http://localhost:3000/api/items");
+            console.log("Fetched todos:", response.data);
             setTodos(response.data);
+            setError('');
         } catch (error) {
             console.error("Error fetching todos:", error);
+            setError("Failed to fetch todos. Please try again.");
         }
     };
 
     return (
         <div className="display-container">
             <div className="todo-list">
-                {todos.length === 0 ? (
+                {error ? (
+                    <div className="error-message">{error}</div>
+                ) : todos.length === 0 ? (
                     <div className="empty-state">
                         <div className="empty-state-icon">📝</div>
                         <p>No tasks yet. Add your first task to get started!</p>
