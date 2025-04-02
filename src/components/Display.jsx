@@ -12,6 +12,7 @@ const Display = () => {
 
     const fetchTodos = async () => {
         try {
+            // Make sure this URL exactly matches your backend route
             const response = await axios.get("https://todobackend-xguo.onrender.com/api/items");
             console.log("Fetched todos:", response.data);
             setTodos(response.data);
