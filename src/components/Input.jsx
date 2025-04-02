@@ -10,7 +10,7 @@ const Input = () => {
     e.preventDefault();
     if (todoText.trim()) {
       try {
-        const response = await axios.post("http://localhost:3000/api/items", {
+        const response = await axios.post("https://todobackend-xguo.onrender.com/api/items", {
           title: todoText.trim()
         });
         console.log("Item added successfully:", response.data);
